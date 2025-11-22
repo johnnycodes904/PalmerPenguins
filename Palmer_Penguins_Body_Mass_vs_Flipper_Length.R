@@ -14,11 +14,10 @@ View(penguins)
 ggplot(data = penguins) +
   geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = species))
 
-#visualize as above but smooth instead of point and B&W for readability
+# visualize as above but jitter instead of point due to overlap and smooth for trendline and B&W for readability
 ggplot(data = penguins) +
-  geom_smooth(mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g, shape = species))
-
+  geom_smooth(method = "gam", mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_jitter(mapping = aes(x = flipper_length_mm, y = body_mass_g, shape = species))
 
 
 # visualize body mass vs flipper length segmented by species
@@ -35,7 +34,7 @@ ggplot(data=penguins,aes(x=flipper_length_mm,y=body_mass_g)) +
 
 
 # visualize body mass and island location (do bigger birds live on a particular island?)
-ggplot(penguins, aes(x = island, y = body_mass_g)) +
+ggplot(penguins, aes(x = island, y = body_mass_g, fill = island)) +
   geom_boxplot() +
   facet_wrap(~species) +
   labs(
@@ -44,3 +43,7 @@ ggplot(penguins, aes(x = island, y = body_mass_g)) +
     y = "Body Mass (g)"
   )
 
+# visualize body mass and flipper length and facet on species, include sex of penguins if known
+ggplot(data=penguins) + 
+  geom_point(mapping = aes(x = flipper_length_mm, y=body_mass_g, color=sex)) +
+  facet_grid(sex~species)
