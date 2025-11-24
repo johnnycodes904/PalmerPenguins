@@ -1,0 +1,20 @@
+---
+title: "Penguins Plots"
+author: "johnnycodes904"
+date: "2025-11-24"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Setting up the environment
+Notes: setting up the environment by loading 'tidyverse' and 'palmer penguins'
+packages.
+
+```{r loading the packages}
+install.packages('tidyverse')
+install.packages('palmerpenguins')
+library(tidyverse)
+library(palmerpenguins)
+```
+
